@@ -5,6 +5,7 @@ import * as api from "../../Api/api";
 import QuestionsCard from "../../Components/questioncard/QuestionsCard";
 import Modal from "../../Components/modal/modal";
 
+
 function Quiz() {
   const { difficulty, amount } = useParams();
 
@@ -23,6 +24,8 @@ function Quiz() {
   }, []);
 
   console.log(questionsData);
+
+
 
   return (
     <div className="quiz">

@@ -32,6 +32,7 @@ function QuestionsCard({
       setModal(true);
     }
   }, [timer]);
+
   const approvedChoice = (event) => {
     const trueAnswer = questionsData[count]?.correct_answer;
     const checkAnswer = event.target.value === trueAnswer;
@@ -43,11 +44,20 @@ function QuestionsCard({
     if (count === 9) setModal(true);
     console.log(modal);
   };
+
+  const decodeEntities = (encodedString) => {
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = encodedString;
+    return textArea.value;
+  };
+
+  const decodedQuestion = decodeEntities(questionsData[count]?.question);
+
   return (
     <div className="QuestionsCard">
       <div className="timer">{timer}</div>
       <div className="CardContent">
-        {count + 1}/10-{questionsData[count]?.question}
+        {count + 1}/10-{decodedQuestion}
         <br />
         {questionsData[count]?.answers.map((answer, i) => (
           <button onClick={approvedChoice} key={i} value={answer}>
